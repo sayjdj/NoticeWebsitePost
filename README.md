@@ -44,10 +44,10 @@
 > **팁:** `link_selector`로 찾은 태그가 javascript 링크 형태인 경우 스크립트(`src/scraper.py`) 내에 예외 처리 로직이 구현되어 있습니다. 다른 사이트 추가 시 형태가 다르면 `src/scraper.py`의 `scrape_site` 함수를 적절히 수정해 주세요.
 
 ### 3. GitHub Pages 활성화
+본 레포지토리는 GitHub Actions를 통해 `main` 브랜치에 푸시될 때 자동으로 `docs/` 디렉토리를 GitHub Pages에 배포합니다.
 1. GitHub 저장소의 **Settings > Pages** 로 이동합니다.
-2. **Build and deployment** 섹션의 Source 항목을 `Deploy from a branch`로 설정합니다.
-3. Branch 항목에서 `main` (또는 작업 중인 브랜치명)을 선택하고 폴더를 `/docs`로 설정한 뒤 Save를 누릅니다.
-4. 잠시 후 상단에 표시되는 GitHub Pages URL에 접속하여 수집된 게시글을 확인할 수 있습니다.
+2. **Build and deployment** 섹션의 Source 항목을 `GitHub Actions`로 설정합니다.
+3. 이후 GitHub Actions 탭에서 `Deploy to GitHub Pages` 워크플로우가 실행되어 자동 배포되는 것을 확인할 수 있습니다.
 
 ### 4. 로컬 테스트 방법
 1. `.env.example` 파일을 복사하여 `.env` 파일을 생성하고, 내부의 값들을 본인의 설정에 맞게 수정합니다.
