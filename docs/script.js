@@ -86,6 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="mt-auto pt-4 flex items-center text-sm text-gray-500">
                         <i class="far fa-calendar-alt mr-1.5"></i>
                         ${escapeHtml(post.date)}
+                        <span class="ml-3 text-xs text-gray-400" title="수집 일시">
+                            <i class="fas fa-download mr-1"></i>${post.scraped_at ? new Date(post.scraped_at).toLocaleDateString('ko-KR') : '-'}
+                        </span>
                     </div>
                 </div>
             `;
@@ -110,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (mostRecentStr) {
                 const date = new Date(mostRecentStr);
-                lastUpdated.innerHTML = `<i class="fas fa-sync-alt mr-1"></i> 마지막 업데이트: ${date.toLocaleString('ko-KR')}`;
+                lastUpdated.innerHTML = `<i class="fas fa-clock mr-2"></i> 뉴스 최근 수집 일시: ${date.toLocaleString('ko-KR')}`;
             }
         }
     }
