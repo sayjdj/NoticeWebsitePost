@@ -149,6 +149,10 @@ def scrape_site(site_config):
                 date_elem = row.select_one(date_selector)
                 if date_elem:
                     date = clean_text(date_elem.get_text())
+                    if name == "GeekNews 최근글":
+                        match = re.search(r'(\d+시간전|\d+분전|\d+일전|어제|방금)', date)
+                        if match:
+                            date = match.group(1)
 
             post_id = link if link else title
 
