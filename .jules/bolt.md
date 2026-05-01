@@ -1,0 +1,3 @@
+## 2024-05-01 - DOM Batching and Loop Optimization
+**Learning:** Appending directly to the DOM inside a loop (like `postsContainer.appendChild(card)`) can cause significant layout thrashing and slow down rendering for large arrays. Creating multiple identical object instances (like `new Date()`) inside a loop is also an unnecessary overhead.
+**Action:** Use `DocumentFragment` to batch DOM insertions before appending them to the live DOM document. Also, instantiate loop-invariant objects (like the current time `new Date()`) outside the loop, and try to reuse instantiated objects (like `new Date(post.scraped_at)`) for multiple formatting/logic needs instead of parsing the same string multiple times inside the loop.

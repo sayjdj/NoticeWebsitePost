@@ -63,8 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         emptyState.classList.add('hidden');
 
+        const fragment = document.createDocumentFragment();
+        const now = new Date();
+
         posts.forEach(post => {
-            const isNew = isPostNew(post.scraped_at);
+            let isNew = false;
+            let scrapedAtDate = null;
+
+            if (post.scraped_at) {
+                scrapedAtDate = new Date(post.scraped_at);
+                const diffHours = (now - scrapedAtDate) / (1000 * 60 * 60);
+                isNew = diffHours < 24; // Consider posts scraped within 24 hours as "new"
+            }
 
             const card = document.createElement('a');
             card.href = post.link;
@@ -87,21 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="far fa-calendar-alt mr-1.5"></i>
                         ${escapeHtml(post.date)}
                         <span class="ml-3 text-xs text-gray-400" title="수집 일시">
-                            <i class="fas fa-download mr-1"></i>${post.scraped_at ? new Date(post.scraped_at).toLocaleDateString('ko-KR') : '-'}
+                            <i class="fas fa-download mr-1"></i>${scrapedAtDate ? scrapedAtDate.toLocaleDateString('ko-KR') : '-'}
                         </span>
                     </div>
                 </div>
             `;
-            postsContainer.appendChild(card);
+            fragment.appendChild(card);
         });
-    }
 
-    function isPostNew(scrapedAtStr) {
-        if (!scrapedAtStr) return false;
-        const scrapedAt = new Date(scrapedAtStr);
-        const now = new Date();
-        const diffHours = (now - scrapedAt) / (1000 * 60 * 60);
-        return diffHours < 24; // Consider posts scraped within 24 hours as "new"
+        postsContainer.appendChild(fragment);
     }
 
     function updateLastModified() {
