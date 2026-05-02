@@ -44,12 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateFilterOptions() {
         const sites = [...new Set(allPosts.map(post => post.site_name))];
+        // ⚡ Bolt: Optimize DOM insertion by batching with DocumentFragment
+        const fragment = document.createDocumentFragment();
         sites.forEach(site => {
             const option = document.createElement('option');
             option.value = site;
             option.textContent = site;
-            siteFilter.appendChild(option);
+            fragment.appendChild(option);
         });
+        siteFilter.appendChild(fragment);
     }
 
     function renderPosts(posts) {
@@ -63,8 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         emptyState.classList.add('hidden');
 
+        // ⚡ Bolt: Cache `new Date()` outside the loop to prevent instantiating it for each of the ~1000 posts
+        const now = new Date();
+        // ⚡ Bolt: Optimize DOM insertion by batching with DocumentFragment to prevent ~1000 reflows
+        const fragment = document.createDocumentFragment();
+
         posts.forEach(post => {
-            const isNew = isPostNew(post.scraped_at);
+            const isNew = isPostNew(post.scraped_at, now);
 
             const card = document.createElement('a');
             card.href = post.link;
@@ -92,15 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `;
-            postsContainer.appendChild(card);
+            fragment.appendChild(card);
         });
+
+        postsContainer.appendChild(fragment);
     }
 
-    function isPostNew(scrapedAtStr) {
+    function isPostNew(scrapedAtStr, now) {
         if (!scrapedAtStr) return false;
         const scrapedAt = new Date(scrapedAtStr);
-        const now = new Date();
-        const diffHours = (now - scrapedAt) / (1000 * 60 * 60);
+        // Fallback if now isn't provided to keep function safe
+        const currentTime = now || new Date();
+        const diffHours = (currentTime - scrapedAt) / (1000 * 60 * 60);
         return diffHours < 24; // Consider posts scraped within 24 hours as "new"
     }
 
