@@ -63,6 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         emptyState.classList.add('hidden');
 
+        // ⚡ Bolt: Use a DocumentFragment to batch DOM insertions.
+        // This prevents excessive DOM reflows and layout thrashing that would occur
+        // if we appended each card directly to postsContainer inside the loop.
+        const fragment = document.createDocumentFragment();
+
         posts.forEach(post => {
             const isNew = isPostNew(post.scraped_at);
 
@@ -92,8 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `;
-            postsContainer.appendChild(card);
+            fragment.appendChild(card);
         });
+
+        // ⚡ Bolt: Append all batched elements in a single DOM operation
+        postsContainer.appendChild(fragment);
     }
 
     function isPostNew(scrapedAtStr) {
