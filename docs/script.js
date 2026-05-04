@@ -63,8 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         emptyState.classList.add('hidden');
 
+        const now = new Date();
+        const fragment = document.createDocumentFragment();
+
         posts.forEach(post => {
-            const isNew = isPostNew(post.scraped_at);
+            const isNew = isPostNew(post.scraped_at, now);
 
             const card = document.createElement('a');
             card.href = post.link;
@@ -92,14 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `;
-            postsContainer.appendChild(card);
+            fragment.appendChild(card);
         });
+
+        postsContainer.appendChild(fragment);
     }
 
-    function isPostNew(scrapedAtStr) {
+    function isPostNew(scrapedAtStr, now) {
         if (!scrapedAtStr) return false;
         const scrapedAt = new Date(scrapedAtStr);
-        const now = new Date();
         const diffHours = (now - scrapedAt) / (1000 * 60 * 60);
         return diffHours < 24; // Consider posts scraped within 24 hours as "new"
     }
