@@ -4,6 +4,7 @@ import html
 import logging
 import datetime
 import requests
+import concurrent.futures
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import re
@@ -187,12 +188,18 @@ def main():
 
     new_posts = []
 
-    for site in target_sites:
-        scraped_posts = scrape_site(site)
-        for post in scraped_posts:
-            if post['id'] not in existing_ids:
-                new_posts.append(post)
-                existing_ids.add(post['id'])
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        future_to_site = {executor.submit(scrape_site, site): site for site in target_sites}
+        for future in concurrent.futures.as_completed(future_to_site):
+            site = future_to_site[future]
+            try:
+                scraped_posts = future.result()
+                for post in scraped_posts:
+                    if post['id'] not in existing_ids:
+                        new_posts.append(post)
+                        existing_ids.add(post['id'])
+            except Exception as e:
+                logger.error(f"Error processing site {site.get('name', 'Unknown')}: {e}")
 
     if new_posts:
         logger.info(f"Found {len(new_posts)} new posts.")
