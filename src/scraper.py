@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import re
 from urllib.parse import urljoin
+import concurrent.futures
 
 # Load environment variables
 load_dotenv()
@@ -187,12 +188,15 @@ def main():
 
     new_posts = []
 
-    for site in target_sites:
-        scraped_posts = scrape_site(site)
-        for post in scraped_posts:
-            if post['id'] not in existing_ids:
-                new_posts.append(post)
-                existing_ids.add(post['id'])
+    # Use ThreadPoolExecutor to scrape sites concurrently.
+    # This significantly reduces network I/O wait time by running requests in parallel.
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        results = executor.map(scrape_site, target_sites)
+        for scraped_posts in results:
+            for post in scraped_posts:
+                if post['id'] not in existing_ids:
+                    new_posts.append(post)
+                    existing_ids.add(post['id'])
 
     if new_posts:
         logger.info(f"Found {len(new_posts)} new posts.")
