@@ -63,11 +63,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         emptyState.classList.add('hidden');
 
-        const now = new Date();
+        // ⚡ Bolt: Cache current time and formatter outside the loop
+        const nowMs = Date.now();
+        const dateFormatter = new Intl.DateTimeFormat('ko-KR');
         const fragment = document.createDocumentFragment();
 
         posts.forEach(post => {
-            const isNew = isPostNew(post.scraped_at, now);
+            let isNew = false;
+            let formattedDate = '-';
+
+            // ⚡ Bolt: Parse date once per post instead of twice
+            if (post.scraped_at) {
+                const scrapedDate = new Date(post.scraped_at);
+                if (!isNaN(scrapedDate)) {
+                    const diffHours = (nowMs - scrapedDate.getTime()) / (1000 * 60 * 60);
+                    isNew = diffHours < 24; // Consider posts scraped within 24 hours as "new"
+                    formattedDate = dateFormatter.format(scrapedDate); // ⚡ Bolt: Use cached formatter
+                }
+            }
 
             const card = document.createElement('a');
             card.href = post.link;
@@ -90,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="far fa-calendar-alt mr-1.5"></i>
                         ${escapeHtml(post.date)}
                         <span class="ml-3 text-xs text-gray-400" title="수집 일시">
-                            <i class="fas fa-download mr-1"></i>${post.scraped_at ? new Date(post.scraped_at).toLocaleDateString('ko-KR') : '-'}
+                            <i class="fas fa-download mr-1"></i>${formattedDate}
                         </span>
                     </div>
                 </div>
@@ -99,13 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         postsContainer.appendChild(fragment);
-    }
-
-    function isPostNew(scrapedAtStr, now) {
-        if (!scrapedAtStr) return false;
-        const scrapedAt = new Date(scrapedAtStr);
-        const diffHours = (now - scrapedAt) / (1000 * 60 * 60);
-        return diffHours < 24; // Consider posts scraped within 24 hours as "new"
     }
 
     function updateLastModified() {

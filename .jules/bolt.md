@@ -5,3 +5,7 @@
 ## 2026-05-07 - Mitigating Serverless Cron Bottlenecks with ThreadPoolExecutor
 **Learning:** The application uses a serverless architecture (GitHub Actions cron job). The previous sequential processing of multiple target sites (`requests.get`) caused cumulative blocking on network I/O, extending execution times and potentially risking timeout failures. Python's `ThreadPoolExecutor` handles this pattern well because it mitigates the GIL limitations for I/O bound tasks like network requests.
 **Action:** When performing multiple independent HTTP requests in this project, use `concurrent.futures.ThreadPoolExecutor` to run network I/O concurrently. Ensure `executor.map` is used if preserving order is necessary.
+
+## 2024-11-09 - Intl.DateTimeFormat caching inside loops
+**Learning:** Using `toLocaleDateString()` inside a loop that iterates over a large dataset (up to 1000 items in this project) is significantly slower than caching an `Intl.DateTimeFormat` instance outside the loop and using its `.format()` method. Furthermore, calling `new Date()` multiple times per item for both date parsing and formatting is redundant.
+**Action:** When formatting dates inside a loop, always cache `Intl.DateTimeFormat` outside the loop. Also, minimize redundant `new Date()` calls by parsing once and reusing the object or its parsed time value.
