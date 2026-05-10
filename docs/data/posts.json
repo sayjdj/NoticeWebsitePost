@@ -1,1 +1,250 @@
-[]
+[
+  {
+    "id": "https://brennan.io/2026/05/09/pinball-and-escrow/",
+    "site_name": "Hacker News",
+    "title": "Space Cadet Pinball on Linux",
+    "link": "https://brennan.io/2026/05/09/pinball-and-escrow/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.260266"
+  },
+  {
+    "id": "http://fourlightyears.blogspot.com/2026/05/i-returned-to-aws-and-was-reminded-hard.html",
+    "site_name": "Hacker News",
+    "title": "I returned to AWS, and was reminded why I left",
+    "link": "http://fourlightyears.blogspot.com/2026/05/i-returned-to-aws-and-was-reminded-hard.html",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.260655"
+  },
+  {
+    "id": "https://mathoverflow.net/questions/43690/whats-a-mathematician-to-do",
+    "site_name": "Hacker News",
+    "title": "What's a Mathematician to Do?",
+    "link": "https://mathoverflow.net/questions/43690/whats-a-mathematician-to-do",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.260946"
+  },
+  {
+    "id": "https://blog.dochia.dev/blog/idempotency/",
+    "site_name": "Hacker News",
+    "title": "Idempotency Is Easy Until the Second Request Is Different",
+    "link": "https://blog.dochia.dev/blog/idempotency/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.261246"
+  },
+  {
+    "id": "https://twitter.com/jarredsumner/status/2053047748191232310",
+    "site_name": "Hacker News",
+    "title": "Bun's experimental Rust rewrite hits 99.8% test compatibility on Linux x64 glibc",
+    "link": "https://twitter.com/jarredsumner/status/2053047748191232310",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.261612"
+  },
+  {
+    "id": "https://www.amusingplanet.com/2026/05/emerich-juettner-one-dollar.html",
+    "site_name": "Hacker News",
+    "title": "The One Dollar Counterfeiter",
+    "link": "https://www.amusingplanet.com/2026/05/emerich-juettner-one-dollar.html",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.261891"
+  },
+  {
+    "id": "https://allendowney.github.io/ThinkLinearAlgebra/index.html",
+    "site_name": "Hacker News",
+    "title": "Think Linear Algebra (2023)",
+    "link": "https://allendowney.github.io/ThinkLinearAlgebra/index.html",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.262175"
+  },
+  {
+    "id": "https://www.rewildingmag.com/the-river-otters-remarkable-comeback/",
+    "site_name": "Hacker News",
+    "title": "The River Otter's Remarkable Comeback",
+    "link": "https://www.rewildingmag.com/the-river-otters-remarkable-comeback/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.262516"
+  },
+  {
+    "id": "https://g5t.de/articles/20260510-task-paralysis-and-ai/index.html",
+    "site_name": "Hacker News",
+    "title": "Task Paralysis and AI",
+    "link": "https://g5t.de/articles/20260510-task-paralysis-and-ai/index.html",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.262802"
+  },
+  {
+    "id": "https://www.casio.com/jp/basic-calculators/premium/en-s100x-jc1-u/",
+    "site_name": "Hacker News",
+    "title": "Casio S100X Japanese Lacquer Edition (JP Page Only)",
+    "link": "https://www.casio.com/jp/basic-calculators/premium/en-s100x-jc1-u/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.263185"
+  },
+  {
+    "id": "https://jobs.ashbyhq.com/9-mothers?utm_source=x8pZ4B3P3Q",
+    "site_name": "Hacker News",
+    "title": "9 Mothers (YC P26) Is Hiring",
+    "link": "https://jobs.ashbyhq.com/9-mothers?utm_source=x8pZ4B3P3Q",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.263497"
+  },
+  {
+    "id": "https://lemire.me/blog/2025/12/04/we-see-something-that-works-and-then-we-understand-it/",
+    "site_name": "Hacker News",
+    "title": "We see something that works, and then we understand it",
+    "link": "https://lemire.me/blog/2025/12/04/we-see-something-that-works-and-then-we-understand-it/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.263776"
+  },
+  {
+    "id": "https://blog.archive.org/2026/05/06/internet-archive-switzerland-expanding-a-global-mission-to-preserve-knowledge/",
+    "site_name": "Hacker News",
+    "title": "Internet Archive Switzerland",
+    "link": "https://blog.archive.org/2026/05/06/internet-archive-switzerland-expanding-a-global-mission-to-preserve-knowledge/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.264065"
+  },
+  {
+    "id": "https://blog.google/innovation-and-ai/technology/developers-tools/expanded-gemini-api-file-search-multimodal-rag/",
+    "site_name": "Hacker News",
+    "title": "Gemini API File Search is now multimodal",
+    "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanded-gemini-api-file-search-multimodal-rag/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.264345"
+  },
+  {
+    "id": "https://chrismorgan.info/no-query-strings",
+    "site_name": "Hacker News",
+    "title": "I’ve banned query strings",
+    "link": "https://chrismorgan.info/no-query-strings",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.264682"
+  },
+  {
+    "id": "https://til.andrew-quinn.me/posts/replacing-a-3-gb-sqlite-database-with-a-7-mb-fst-finite-state-trandsucer-binary/",
+    "site_name": "Hacker News",
+    "title": "Replacing a 3 GB SQLite db with a 10 MB FST (finite state transducer) binary",
+    "link": "https://til.andrew-quinn.me/posts/replacing-a-3-gb-sqlite-database-with-a-7-mb-fst-finite-state-trandsucer-binary/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.264959"
+  },
+  {
+    "id": "https://github.com/imtomt/ymawky",
+    "site_name": "Hacker News",
+    "title": "Show HN: Building a web server in assembly to give my life (a lack of) meaning",
+    "link": "https://github.com/imtomt/ymawky",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.265248"
+  },
+  {
+    "id": "https://arxiv.org/abs/2605.05419",
+    "site_name": "Hacker News",
+    "title": "LLMorphism: When humans come to see themselves as language models",
+    "link": "https://arxiv.org/abs/2605.05419",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.265629"
+  },
+  {
+    "id": "https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/",
+    "site_name": "Hacker News",
+    "title": "A recent experience with ChatGPT 5.5 Pro",
+    "link": "https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.265907"
+  },
+  {
+    "id": "https://blog.kronis.dev/blog/apple-is-increasing-my-cortisol-levels",
+    "site_name": "Hacker News",
+    "title": "Distributing Mac software is increasing my cortisol levels",
+    "link": "https://blog.kronis.dev/blog/apple-is-increasing-my-cortisol-levels",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.266192"
+  },
+  {
+    "id": "https://www.freebsd.org/security/advisories/FreeBSD-SA-26:13.exec.asc",
+    "site_name": "Hacker News",
+    "title": "Local privilege escalation via execve()",
+    "link": "https://www.freebsd.org/security/advisories/FreeBSD-SA-26:13.exec.asc",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.266528"
+  },
+  {
+    "id": "https://mbmccoy.dev/posts/buffons-noodle/",
+    "site_name": "Hacker News",
+    "title": "From Buffon's Needle to Buffon's Noodle",
+    "link": "https://mbmccoy.dev/posts/buffons-noodle/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.266802"
+  },
+  {
+    "id": "https://arxiv.org/abs/2604.15597",
+    "site_name": "Hacker News",
+    "title": "LLMs corrupt your documents when you delegate",
+    "link": "https://arxiv.org/abs/2604.15597",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.267146"
+  },
+  {
+    "id": "https://zed.dev/theme-builder",
+    "site_name": "Hacker News",
+    "title": "Zed Editor Theme-Builder",
+    "link": "https://zed.dev/theme-builder",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.267489"
+  },
+  {
+    "id": "https://lists.debian.org/debian-devel-announce/2026/05/msg00001.html",
+    "site_name": "Hacker News",
+    "title": "Debian must ship reproducible packages",
+    "link": "https://lists.debian.org/debian-devel-announce/2026/05/msg00001.html",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.267774"
+  },
+  {
+    "id": "https://github.com/nooga/let-go",
+    "site_name": "Hacker News",
+    "title": "Show HN: I made a Clojure-like language in Go, boots in 7ms",
+    "link": "https://github.com/nooga/let-go",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.268076"
+  },
+  {
+    "id": "https://evilgeniuslabs.ca/blog/visual-basic-history-chapter-1-launch",
+    "site_name": "Hacker News",
+    "title": "I'm writing a history of Visual Basic, Chapter 1 is up",
+    "link": "https://evilgeniuslabs.ca/blog/visual-basic-history-chapter-1-launch",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.268402"
+  },
+  {
+    "id": "https://github.com/ThatXliner/rust-but-lisp",
+    "site_name": "Hacker News",
+    "title": "Show HN: Rust but Lisp",
+    "link": "https://github.com/ThatXliner/rust-but-lisp",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.268690"
+  },
+  {
+    "id": "https://lisyarus.github.io/blog/posts/making-your-own-programming-language.html",
+    "site_name": "Hacker News",
+    "title": "Making your own programming language is easier than you think (but also harder)",
+    "link": "https://lisyarus.github.io/blog/posts/making-your-own-programming-language.html",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.268963"
+  },
+  {
+    "id": "https://twitter.com/trq212/status/2052809885763747935",
+    "site_name": "Hacker News",
+    "title": "Using Claude Code: The unreasonable effectiveness of HTML",
+    "link": "https://twitter.com/trq212/status/2052809885763747935",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:21:25.269255"
+  },
+  {
+    "id": "https://rarehistoricalphotos.com/weird-japanese-inventions/",
+    "site_name": "Hacker News",
+    "title": "Chindogu: Weird and Useless Japanese Inventions",
+    "link": "https://rarehistoricalphotos.com/weird-japanese-inventions/",
+    "date": "2026-05-10",
+    "scraped_at": "2026-05-10T14:41:38.291885"
+  }
+]
