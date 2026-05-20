@@ -32,7 +32,7 @@ def load_target_sites():
         logger.error(f"Failed to parse TARGET_SITES JSON: {e}")
         return []
 
-def send_telegram_message(token, chat_id, message):
+def send_telegram_message(token, chat_id, message, session=None):
     if not token or not chat_id or token == 'your_telegram_bot_token_here':
         logger.warning("Telegram token or chat ID is missing or invalid. Skipping notification.")
         return
@@ -43,8 +43,12 @@ def send_telegram_message(token, chat_id, message):
         "text": message,
         "parse_mode": "HTML"
     }
+
+    # ⚡ Bolt: Use provided session for connection pooling, fallback to requests
+    client = session if session else requests
+
     try:
-        response = requests.post(url, json=payload, timeout=10)
+        response = client.post(url, json=payload, timeout=10)
         response.raise_for_status()
         logger.info(f"Telegram notification sent successfully.")
     except Exception as e:
@@ -200,9 +204,12 @@ def main():
 
     if new_posts:
         logger.info(f"Found {len(new_posts)} new posts.")
-        for post in reversed(new_posts):
-            message = f"<b>[{html.escape(post['site_name'])}]</b>\n{html.escape(post['title'])}\n<a href='{post['link']}'>링크 이동</a>"
-            send_telegram_message(telegram_token, telegram_chat_id, message)
+        # ⚡ Bolt: Batch consecutive API requests using a single session
+        # This reuses the TCP/TLS connection instead of performing a new handshake per post
+        with requests.Session() as session:
+            for post in reversed(new_posts):
+                message = f"<b>[{html.escape(post['site_name'])}]</b>\n{html.escape(post['title'])}\n<a href='{post['link']}'>링크 이동</a>"
+                send_telegram_message(telegram_token, telegram_chat_id, message, session=session)
 
         all_posts = existing_posts + new_posts
         save_posts(all_posts)
