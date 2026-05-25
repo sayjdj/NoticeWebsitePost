@@ -16,7 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            allPosts = data;
+            // ⚡ Bolt: Pre-calculate date representations once to avoid re-parsing inside render loop
+            const dateFormatter = new Intl.DateTimeFormat('ko-KR');
+            allPosts = data.map(post => {
+                if (post.scraped_at) {
+                    const scrapedDate = new Date(post.scraped_at);
+                    if (!isNaN(scrapedDate)) {
+                        post._parsed_time = scrapedDate.getTime();
+                        post._formatted_date = dateFormatter.format(scrapedDate);
+                    }
+                }
+                return post;
+            });
             populateFilterOptions();
             renderPosts(allPosts);
             updateLastModified();
@@ -63,23 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         emptyState.classList.add('hidden');
 
-        // ⚡ Bolt: Cache current time and formatter outside the loop
+        // ⚡ Bolt: Cache current time outside the loop
         const nowMs = Date.now();
-        const dateFormatter = new Intl.DateTimeFormat('ko-KR');
         const fragment = document.createDocumentFragment();
 
         posts.forEach(post => {
             let isNew = false;
             let formattedDate = '-';
 
-            // ⚡ Bolt: Parse date once per post instead of twice
-            if (post.scraped_at) {
-                const scrapedDate = new Date(post.scraped_at);
-                if (!isNaN(scrapedDate)) {
-                    const diffHours = (nowMs - scrapedDate.getTime()) / (1000 * 60 * 60);
-                    isNew = diffHours < 24; // Consider posts scraped within 24 hours as "new"
-                    formattedDate = dateFormatter.format(scrapedDate); // ⚡ Bolt: Use cached formatter
-                }
+            // ⚡ Bolt: Use pre-calculated parsed time and formatted date instead of new Date()
+            if (post._parsed_time !== undefined) {
+                const diffHours = (nowMs - post._parsed_time) / (1000 * 60 * 60);
+                isNew = diffHours < 24; // Consider posts scraped within 24 hours as "new"
+                formattedDate = post._formatted_date;
             }
 
             const card = document.createElement('a');
