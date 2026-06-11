@@ -9,3 +9,7 @@
 ## 2024-11-09 - Intl.DateTimeFormat caching inside loops
 **Learning:** Using `toLocaleDateString()` inside a loop that iterates over a large dataset (up to 1000 items in this project) is significantly slower than caching an `Intl.DateTimeFormat` instance outside the loop and using its `.format()` method. Furthermore, calling `new Date()` multiple times per item for both date parsing and formatting is redundant.
 **Action:** When formatting dates inside a loop, always cache `Intl.DateTimeFormat` outside the loop. Also, minimize redundant `new Date()` calls by parsing once and reusing the object or its parsed time value.
+
+## 2023-11-10 - Connection Pooling for Repeated API Calls
+**Learning:** Sending consecutive notifications via `requests.post` inside a loop requires establishing a new TCP connection and TLS handshake for every single message sent to the Telegram API. This adds substantial network overhead when processing many new scraped items.
+**Action:** Always use `requests.Session()` when making multiple API calls to the same host in this project to reuse the underlying TCP connections, drastically lowering network latency.
