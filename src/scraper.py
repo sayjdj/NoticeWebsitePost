@@ -32,7 +32,7 @@ def load_target_sites():
         logger.error(f"Failed to parse TARGET_SITES JSON: {e}")
         return []
 
-def send_telegram_message(token, chat_id, message):
+def send_telegram_message(token, chat_id, message, session=None):
     if not token or not chat_id or token == 'your_telegram_bot_token_here':
         logger.warning("Telegram token or chat ID is missing or invalid. Skipping notification.")
         return
@@ -44,7 +44,10 @@ def send_telegram_message(token, chat_id, message):
         "parse_mode": "HTML"
     }
     try:
-        response = requests.post(url, json=payload, timeout=10)
+        if session:
+            response = session.post(url, json=payload, timeout=10)
+        else:
+            response = requests.post(url, json=payload, timeout=10)
         response.raise_for_status()
         logger.info(f"Telegram notification sent successfully.")
     except Exception as e:
@@ -200,9 +203,11 @@ def main():
 
     if new_posts:
         logger.info(f"Found {len(new_posts)} new posts.")
-        for post in reversed(new_posts):
-            message = f"<b>[{html.escape(post['site_name'])}]</b>\n{html.escape(post['title'])}\n<a href='{post['link']}'>링크 이동</a>"
-            send_telegram_message(telegram_token, telegram_chat_id, message)
+        # ⚡ Bolt: Use requests.Session() to pool TCP/TLS connections to Telegram API
+        with requests.Session() as session:
+            for post in reversed(new_posts):
+                message = f"<b>[{html.escape(post['site_name'])}]</b>\n{html.escape(post['title'])}\n<a href='{post['link']}'>링크 이동</a>"
+                send_telegram_message(telegram_token, telegram_chat_id, message, session=session)
 
         all_posts = existing_posts + new_posts
         save_posts(all_posts)
